@@ -1,0 +1,31 @@
+body{
+    font-family: "Parkinsans", sans-serif;
+  font-weight: 100;
+}
+
+.navContainer{
+    /* border: 2px solid black; */
+    width: 70vw;
+
+}
+.navArea{
+    padding: 10px 10px;
+    border-bottom: 1px solid black;
+    width: 70vw;
+    position: relative;
+    left: 60px;
+    /* height: 50px; */
+    display: flex;
+    gap: 20px;
+}
+.input-header h5{
+    margin: 0;
+}
+/* .input-section{
+    border: 1px solid black; 
+} */
+
+.navContainer button{
+    font-family: "Parkinsans", sans-serif;
+  font-weight: 500;
+}
