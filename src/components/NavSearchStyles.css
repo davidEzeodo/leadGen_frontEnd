@@ -29,3 +29,6 @@ body{
     font-family: "Parkinsans", sans-serif;
   font-weight: 500;
 }
+.navContainer button:hover{
+    cursor: pointer;
+}
