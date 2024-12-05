@@ -4,8 +4,8 @@ import "./NavSearchStyles.css";
 const NavSearch = ({ onFetchLeads }) => {
   const [occupation, setOccupation] = useState("");
   const [city, setCity] = useState("");
-  const [country, setKeyword] = useState("");
-  const [keyword, setFileType] = useState("");
+  const [country, setCountry] = useState("");
+  const [keyword, setKeyword] = useState("");
 
   const handleSearch = async () => {
 
@@ -20,21 +20,28 @@ const NavSearch = ({ onFetchLeads }) => {
       country,
       keyword
     };
+    console.log(queryParams);
+    
 
+    // const queryParamsToString = JSON.stringify(queryParams)
     const queryParamsToString = JSON.stringify(queryParams)
+    console.log(queryParamsToString);
 
     try {
       const response = await fetch(
-        `http://localhost:8080/search${queryParamsToString}`, // Replace with your endpoint
+        "http://localhost:8080/search",
         {
-          method:"GET",
+          method:"POST",
           headers: {
             "Content-Type": "application/json",
           },
-        
+          body: queryParamsToString
         }
       );
+
       const data = await response.json();
+      console.log(data)
+
       onFetchLeads(data); // Pass the fetched data to the parent
     } catch (error) {
       console.error("Error fetching leads:", error);
@@ -79,7 +86,7 @@ const NavSearch = ({ onFetchLeads }) => {
               type="text"
               placeholder="Enter country"
               value={country}
-              onChange={(e) => setKeyword(e.target.value)}
+              onChange={(e) => setCountry(e.target.value)}
             />
           </div>
         </div>
@@ -92,7 +99,7 @@ const NavSearch = ({ onFetchLeads }) => {
               type="text"
               placeholder="Enter keyword"
               value={keyword}
-              onChange={(e) => setFileType(e.target.value)}
+              onChange={(e) => setKeyword(e.target.value)}
             />
           </div>
         </div>

@@ -19,44 +19,30 @@ const Home = () => {
         <div className="nav-search">
           <NavSearch onFetchLeads={handleFetchLeads} />
           <div className="container-for-displaying-leads">
-            <div className="column-headers">
-              <div className="column">
-                <h5>Name</h5>
-              </div>
-              <div className="column">
-                <h5>Email</h5>
-              </div>
-              <div className="column">
-                <h5>Company</h5>
-              </div>
-              <div className="column">
-                <h5>Location</h5>
-              </div>
-            </div>
-            <div className="row-content">
-              {leads.length > 0 ? (
-                leads.map((lead, index) => (
-                  <div key={index} className="row">
-                    <div className="column">
-                      <h4>{lead.title || "N/A"}</h4>
-                    </div>
-                    <div className="column">
-                      <h4>{lead.emails?.join(", ") || "N/A"}</h4>
-                    </div>
-                    <div className="column">
-                      <h4>{lead.url || "N/A"}</h4>
-                    </div>
-                    <div className="column">
-                      <h4>{"N/A"}</h4> {/* Location placeholder */}
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="row">
-                  <h4>No leads available</h4>
-                </div>
-              )}
-            </div>
+            <table className="leads-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>URL</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {leads.length > 0 ? (
+                  leads.map((lead, index) => (
+                    <tr key={index}>
+                      <td>{lead.title || "N/A"}</td>
+                      <td>{Array.isArray(lead.url) ? lead.url.join(", ") : lead.url || "N/A"}</td>
+                      <td>{lead.emails?.length > 0 ? lead.emails.join(", ") : "N/A"}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="3">No leads available</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
